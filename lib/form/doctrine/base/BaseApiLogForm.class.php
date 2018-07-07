@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Client form base class.
+ * ApiLog form base class.
  * sfDoctrineFormGenerator 
- * @method Client getObject() Returns the current form's model object
+ * @method ApiLog getObject() Returns the current form's model object
  *
  * @package    cms
  * @subpackage form
@@ -14,7 +14,7 @@
    
    
  
-abstract class BaseClientForm extends BaseFormDoctrine
+abstract class BaseApiLogForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -22,35 +22,42 @@ abstract class BaseClientForm extends BaseFormDoctrine
        
             
             
-              'id'            => new sfWidgetFormInputHidden(),
+              'id'         => new sfWidgetFormInputHidden(),
       
         
         
        
             
             
-              'name'          => new sfWidgetFormInputText(),
+              'message'    => new sfWidgetFormInputText(),
       
         
         
        
             
             
-              'client_key'    => new sfWidgetFormInputText(),
+              'errorcode'  => new sfWidgetFormInputText(),
       
         
         
        
             
             
-              'client_secret' => new sfWidgetFormInputText(),
+              'info'       => new sfWidgetFormTextarea(),
       
         
         
        
             
             
-              'gateway_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Gateway'), 'add_empty' => true)),
+              'created_at' => new sfWidgetFormDateTime(),
+      
+        
+        
+       
+            
+            
+              'updated_at' => new sfWidgetFormDateTime(),
       
         
         
@@ -58,22 +65,20 @@ abstract class BaseClientForm extends BaseFormDoctrine
 
     $this->setValidators(array(
             
-              'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+              'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
                   
-              'name'          => new sfValidatorString(array('max_length' => 255)),
+              'message'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
                   
-              'client_key'    => new sfValidatorString(array('max_length' => 32)),
+              'errorcode'  => new sfValidatorInteger(array('required' => false)),
                   
-              'client_secret' => new sfValidatorString(array('max_length' => 255)),
+              'info'       => new sfValidatorString(array('required' => false)),
                   
-              'gateway_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Gateway'), 'required' => false)),
+              'created_at' => new sfValidatorDateTime(),
+                  
+              'updated_at' => new sfValidatorDateTime(),
           ));
 
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Client', 'column' => array('client_key')))
-    );
-
-    $this->widgetSchema->setNameFormat('client[%s]');
+    $this->widgetSchema->setNameFormat('api_log[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -82,6 +87,7 @@ abstract class BaseClientForm extends BaseFormDoctrine
     parent::setup();
     
            
+         unset($this['created_at'], $this['updated_at']);
            
      
          
@@ -89,7 +95,7 @@ abstract class BaseClientForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'Client';
+    return 'ApiLog';
   }
     public function updateObject($values = null)
     {

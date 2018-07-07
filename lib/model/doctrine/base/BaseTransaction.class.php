@@ -12,7 +12,12 @@ Doctrine_Manager::getInstance()->bindComponent('Transaction', 'doctrine');
  * @property enum $status
  * @property float $sum
  * @property string $currency
+ * @property string $product
  * @property string $description
+ * @property string $hash
+ * @property string $url_success
+ * @property string $url_cancel
+ * @property string $url_failure
  * @property Gateway $Gateway
  * @property Client $Client
  * 
@@ -21,7 +26,12 @@ Doctrine_Manager::getInstance()->bindComponent('Transaction', 'doctrine');
  * @method enum        getStatus()      Returns the current record's "status" value
  * @method float       getSum()         Returns the current record's "sum" value
  * @method string      getCurrency()    Returns the current record's "currency" value
+ * @method string      getProduct()     Returns the current record's "product" value
  * @method string      getDescription() Returns the current record's "description" value
+ * @method string      getHash()        Returns the current record's "hash" value
+ * @method string      getUrlSuccess()  Returns the current record's "url_success" value
+ * @method string      getUrlCancel()   Returns the current record's "url_cancel" value
+ * @method string      getUrlFailure()  Returns the current record's "url_failure" value
  * @method Gateway     getGateway()     Returns the current record's "Gateway" value
  * @method Client      getClient()      Returns the current record's "Client" value
  * @method Transaction setClientId()    Sets the current record's "client_id" value
@@ -29,7 +39,12 @@ Doctrine_Manager::getInstance()->bindComponent('Transaction', 'doctrine');
  * @method Transaction setStatus()      Sets the current record's "status" value
  * @method Transaction setSum()         Sets the current record's "sum" value
  * @method Transaction setCurrency()    Sets the current record's "currency" value
+ * @method Transaction setProduct()     Sets the current record's "product" value
  * @method Transaction setDescription() Sets the current record's "description" value
+ * @method Transaction setHash()        Sets the current record's "hash" value
+ * @method Transaction setUrlSuccess()  Sets the current record's "url_success" value
+ * @method Transaction setUrlCancel()   Sets the current record's "url_cancel" value
+ * @method Transaction setUrlFailure()  Sets the current record's "url_failure" value
  * @method Transaction setGateway()     Sets the current record's "Gateway" value
  * @method Transaction setClient()      Sets the current record's "Client" value
  * 
@@ -56,7 +71,7 @@ abstract class BaseTransaction extends sfDoctrineRecord
              'values' => 
              array(
               0 => 'pending',
-              1 => 'payd',
+              1 => 'paid',
               2 => 'cancelled',
              ),
              'default' => 'pending',
@@ -70,9 +85,29 @@ abstract class BaseTransaction extends sfDoctrineRecord
              'notnull' => true,
              'length' => 32,
              ));
+        $this->hasColumn('product', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
         $this->hasColumn('description', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('hash', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('url_success', 'string', null, array(
+             'type' => 'string',
+             'length' => '',
+             ));
+        $this->hasColumn('url_cancel', 'string', null, array(
+             'type' => 'string',
+             'length' => '',
+             ));
+        $this->hasColumn('url_failure', 'string', null, array(
+             'type' => 'string',
+             'length' => '',
              ));
     }
 

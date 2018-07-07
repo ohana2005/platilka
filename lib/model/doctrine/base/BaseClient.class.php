@@ -45,12 +45,15 @@ abstract class BaseClient extends sfDoctrineRecord
              'notnull' => true,
              'length' => 255,
              ));
-        $this->hasColumn('client_key', 'string', 255, array(
+        $this->hasColumn('client_key', 'string', 32, array(
              'type' => 'string',
-             'length' => 255,
+             'unique' => true,
+             'notnull' => true,
+             'length' => 32,
              ));
         $this->hasColumn('client_secret', 'string', 255, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 255,
              ));
         $this->hasColumn('gateway_id', 'integer', null, array(

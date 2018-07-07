@@ -14,8 +14,8 @@ abstract class BaseClientFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'name'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'client_key'    => new sfWidgetFormFilterInput(),
-      'client_secret' => new sfWidgetFormFilterInput(),
+      'client_key'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'client_secret' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'gateway_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Gateway'), 'add_empty' => true)),
     ));
 
