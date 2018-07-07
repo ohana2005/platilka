@@ -1,0 +1,12 @@
+/cache
+/log
+/.idea
+/.idea_modules
+/config/databases.yml
+/config/symfony.php
+/config/env.php
+/web/uploads
+/Archive.zip
+/vendor
+.DS_Store
+web/.DS_Store
