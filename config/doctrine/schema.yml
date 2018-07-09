@@ -70,6 +70,8 @@ Transaction:
     product: string(255)
     description: string(255)
     hash: string(255)
+    objectid: integer
+    params: string()
     url_success: string()
     url_cancel: string()
     url_failure: string()

@@ -2,6 +2,18 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+transaction_cancel:
+  url:   /transaction/cancel/:id/:hash
+  param: { module: transaction, action: cancel }
+
+transaction_pay:
+  url:   /transaction/pay/:id/:hash
+  param: { module: transaction, action: pay }
+
+transaction:
+  url:   /transaction/:id/:hash
+  param: { module: transaction, action: show }
+
 homepage:
   url:   /
   param: { module: default, action: index }

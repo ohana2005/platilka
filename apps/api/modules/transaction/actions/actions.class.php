@@ -49,6 +49,8 @@ class transactionActions extends sfActions
             'url_success' => $data['url_success'],
             'url_cancel' => $data['url_cancel'],
             'url_failure' => $data['url_failure'],
+            'objectid' => $data['objectid'],
+            'params' => !empty($data['params']) ? $data['params'] : '',
             'hash' => sha1(md5(microtime() . $Client->id . $data['sum']))
         ]);
         $Tran->save();

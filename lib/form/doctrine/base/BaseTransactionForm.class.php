@@ -85,6 +85,20 @@ abstract class BaseTransactionForm extends BaseFormDoctrine
        
             
             
+              'objectid'    => new sfWidgetFormInputText(),
+      
+        
+        
+       
+            
+            
+              'params'      => new sfWidgetFormTextarea(),
+      
+        
+        
+       
+            
+            
               'url_success' => new sfWidgetFormTextarea(),
       
         
@@ -138,6 +152,10 @@ abstract class BaseTransactionForm extends BaseFormDoctrine
               'description' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
                   
               'hash'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+                  
+              'objectid'    => new sfValidatorInteger(array('required' => false)),
+                  
+              'params'      => new sfValidatorString(array('required' => false)),
                   
               'url_success' => new sfValidatorString(array('required' => false)),
                   

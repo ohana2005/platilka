@@ -15,6 +15,8 @@ Doctrine_Manager::getInstance()->bindComponent('Transaction', 'doctrine');
  * @property string $product
  * @property string $description
  * @property string $hash
+ * @property integer $objectid
+ * @property string $params
  * @property string $url_success
  * @property string $url_cancel
  * @property string $url_failure
@@ -29,6 +31,8 @@ Doctrine_Manager::getInstance()->bindComponent('Transaction', 'doctrine');
  * @method string      getProduct()     Returns the current record's "product" value
  * @method string      getDescription() Returns the current record's "description" value
  * @method string      getHash()        Returns the current record's "hash" value
+ * @method integer     getObjectid()    Returns the current record's "objectid" value
+ * @method string      getParams()      Returns the current record's "params" value
  * @method string      getUrlSuccess()  Returns the current record's "url_success" value
  * @method string      getUrlCancel()   Returns the current record's "url_cancel" value
  * @method string      getUrlFailure()  Returns the current record's "url_failure" value
@@ -42,6 +46,8 @@ Doctrine_Manager::getInstance()->bindComponent('Transaction', 'doctrine');
  * @method Transaction setProduct()     Sets the current record's "product" value
  * @method Transaction setDescription() Sets the current record's "description" value
  * @method Transaction setHash()        Sets the current record's "hash" value
+ * @method Transaction setObjectid()    Sets the current record's "objectid" value
+ * @method Transaction setParams()      Sets the current record's "params" value
  * @method Transaction setUrlSuccess()  Sets the current record's "url_success" value
  * @method Transaction setUrlCancel()   Sets the current record's "url_cancel" value
  * @method Transaction setUrlFailure()  Sets the current record's "url_failure" value
@@ -96,6 +102,13 @@ abstract class BaseTransaction extends sfDoctrineRecord
         $this->hasColumn('hash', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('objectid', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('params', 'string', null, array(
+             'type' => 'string',
+             'length' => '',
              ));
         $this->hasColumn('url_success', 'string', null, array(
              'type' => 'string',
