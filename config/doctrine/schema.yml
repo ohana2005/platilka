@@ -30,12 +30,20 @@ Gateway:
     name: {type: string(255), notnull: true}
     php_class: string(255)
 
+ApiLog:
+  connection: doctrine
+  actAs: [Timestampable]
+  columns:
+    message: string(255)
+    errorcode: integer
+    info: string()
+
 Client:
   connection: doctrine
   columns:
     name: {type: string(255), notnull: true}
-    client_key: string(255)
-    client_secret: string(255)
+    client_key: {type: string(32), unique: true, notnull: true}
+    client_secret: {type: string(255), notnull: true}
     gateway_id: integer
   relations:
     Gateway: {foreignAlias: Clients, onDelete: SET NULL}
@@ -56,10 +64,17 @@ Transaction:
   columns:
     client_id: {type: integer, notnull: true}
     gateway_id: {type: integer, notnull: true}
-    status: {type: enum, values: [pending, payd, cancelled], default: pending}
+    status: {type: enum, values: [pending, paid, cancelled], default: pending}
     sum: {type: float, notnull: true}
     currency: {type: string(32), notnull: true}
+    product: string(255)
     description: string(255)
+    hash: string(255)
+    objectid: integer
+    params: string()
+    url_success: string()
+    url_cancel: string()
+    url_failure: string()
   relations:
     Gateway: {foreignAlias: Transactions, onDelete: CASCADE}
     Client: {foreignAlias: Transactions, onDelete: CASCADE}

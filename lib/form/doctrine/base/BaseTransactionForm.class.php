@@ -43,7 +43,7 @@ abstract class BaseTransactionForm extends BaseFormDoctrine
        
             
             
-              'status'      => new sfWidgetFormChoice(array('choices' => array('pending' => 'pending', 'payd' => 'payd', 'cancelled' => 'cancelled'))),
+              'status'      => new sfWidgetFormChoice(array('choices' => array('pending' => 'pending', 'paid' => 'paid', 'cancelled' => 'cancelled'))),
       
         
         
@@ -64,7 +64,56 @@ abstract class BaseTransactionForm extends BaseFormDoctrine
        
             
             
+              'product'     => new sfWidgetFormInputText(),
+      
+        
+        
+       
+            
+            
               'description' => new sfWidgetFormInputText(),
+      
+        
+        
+       
+            
+            
+              'hash'        => new sfWidgetFormInputText(),
+      
+        
+        
+       
+            
+            
+              'objectid'    => new sfWidgetFormInputText(),
+      
+        
+        
+       
+            
+            
+              'params'      => new sfWidgetFormTextarea(),
+      
+        
+        
+       
+            
+            
+              'url_success' => new sfWidgetFormTextarea(),
+      
+        
+        
+       
+            
+            
+              'url_cancel'  => new sfWidgetFormTextarea(),
+      
+        
+        
+       
+            
+            
+              'url_failure' => new sfWidgetFormTextarea(),
       
         
         
@@ -92,13 +141,27 @@ abstract class BaseTransactionForm extends BaseFormDoctrine
                   
               'gateway_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Gateway'))),
                   
-              'status'      => new sfValidatorChoice(array('choices' => array(0 => 'pending', 1 => 'payd', 2 => 'cancelled'), 'required' => false)),
+              'status'      => new sfValidatorChoice(array('choices' => array(0 => 'pending', 1 => 'paid', 2 => 'cancelled'), 'required' => false)),
                   
               'sum'         => new sfValidatorNumber(),
                   
               'currency'    => new sfValidatorString(array('max_length' => 32)),
                   
+              'product'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+                  
               'description' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+                  
+              'hash'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+                  
+              'objectid'    => new sfValidatorInteger(array('required' => false)),
+                  
+              'params'      => new sfValidatorString(array('required' => false)),
+                  
+              'url_success' => new sfValidatorString(array('required' => false)),
+                  
+              'url_cancel'  => new sfValidatorString(array('required' => false)),
+                  
+              'url_failure' => new sfValidatorString(array('required' => false)),
                   
               'created_at'  => new sfValidatorDateTime(),
                   
